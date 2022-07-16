@@ -46,5 +46,6 @@ public class DiceActivity extends AppCompatActivity {
         Dice d = new Dice();
         d.DiceRoller();
         tv.setText(String.valueOf(d.getDiceCount()));
+        view.setEnabled(false);
     }
 }
