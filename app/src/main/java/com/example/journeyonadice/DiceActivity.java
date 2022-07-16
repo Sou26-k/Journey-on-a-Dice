@@ -15,7 +15,16 @@ public class DiceActivity extends AppCompatActivity {
         setContentView(R.layout.activity_dice);
         Intent intent = getIntent();
 
-        System.out.println(intent.getStringExtra("start"));
-        System.out.println(intent.getStringExtra("destination"));
+        //System.out.println(intent.getStringExtra("start"));
+        //System.out.println(intent.getStringExtra("destination"));
+
+        Destination d = new Destination();
+        d.setDestination();
+        String s[] = d.selectDestination();
+
+        for(int i = 0;i <6;i++) {
+            System.out.println(s[i]);
+        }
+
     }
 }
