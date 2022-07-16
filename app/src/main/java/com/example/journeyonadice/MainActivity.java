@@ -44,11 +44,12 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    public void implemented(View v){
+    public void next_page(View v){
         Intent intent = new Intent(this, DiceActivity.class);
 
         intent.putExtra("start",(String) spinner_start.getSelectedItem());
         intent.putExtra("destination",(String) spinner_destination.getSelectedItem());
+        intent.putExtra("now",(String) spinner_start.getSelectedItem());
         if(intent.resolveActivity(getPackageManager()) != null){
             startActivity(intent);
         }

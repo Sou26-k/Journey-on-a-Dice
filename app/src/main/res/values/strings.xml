@@ -4,4 +4,5 @@
     <string name="destination">目的地</string>
     <string name="start">開始</string>
     <string name="roll_dice">振る</string>
+    <string name="next">次へ</string>
 </resources>

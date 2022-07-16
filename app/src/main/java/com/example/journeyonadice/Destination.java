@@ -35,7 +35,7 @@ public class Destination {
         Collections.shuffle(l);
 
         for(int i = 0; i < 6; i++){
-            pip[i] = (String) (i+1 + "." + data.get(l.get(i)));
+            pip[i] = (String) (data.get(l.get(i)));
         }
         return pip;
     }

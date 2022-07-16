@@ -9,7 +9,7 @@
     <ListView
         android:id="@+id/dice_selected"
         android:layout_width="0dp"
-        android:layout_height="550dp"
+        android:layout_height="450dp"
         android:layout_marginStart="3dp"
         android:layout_marginEnd="3dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -17,24 +17,34 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/roll_bt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="100dp"
-        android:layout_marginBottom="72dp"
+        android:layout_marginTop="29dp"
+        android:layout_marginEnd="97dp"
         android:onClick="roll_dice"
         android:text="@string/roll_dice"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="@+id/dice_selected"
+        app:layout_constraintTop_toBottomOf="@+id/dice_selected" />
 
     <TextView
         android:id="@+id/dice_pip"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="100dp"
+        android:layout_marginTop="48dp"
+        android:layout_marginEnd="52dp"
         android:text="TextView"
-        app:layout_constraintBottom_toBottomOf="@+id/button2"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/button2"
-        app:layout_constraintVertical_bias="0.482" />
+        app:layout_constraintEnd_toStartOf="@+id/roll_bt"
+        app:layout_constraintTop_toBottomOf="@+id/dice_selected" />
+
+    <Button
+        android:id="@+id/next"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        android:onClick="next_page"
+        android:text="@string/next"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
