@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -36,5 +37,11 @@ public class MainActivity extends AppCompatActivity {
 
         Spinner destination = findViewById(R.id.destination);
         destination.setAdapter(adapter_destination);
+
+
+    }
+
+    public void onClick(View v){
+        
     }
 }
