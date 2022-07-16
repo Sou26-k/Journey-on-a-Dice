@@ -9,6 +9,11 @@ import android.view.View;
 public class result extends AppCompatActivity {
 
     String destination,start,flag;
+    String host = "10.0.2.2";
+    int port = 50000;
+
+    public NetSample net;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,9 +32,25 @@ public class result extends AppCompatActivity {
         if(flag.equals("count")){
             System.out.println("回数オーバーです");
         }
+
+       net = new NetSample();
+
+
+    }
+
+    protected void onResume() {
+        super.onResume();
+        net.connect(host, port);
+
+    }
+    protected void onPause() {
+        super.onPause();
+
+        net.close();
     }
 
     public void again(View view){
+        net.send("出発地:"+ this.start + "\n目的地:"+ this.destination);
         Intent intent = new Intent(this, MainActivity.class);
         if(intent.resolveActivity(getPackageManager()) != null){
             startActivity(intent);
