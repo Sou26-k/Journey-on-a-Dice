@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -19,6 +20,7 @@ public class DiceActivity extends AppCompatActivity {
     String s[];
 
     String destination,start,now;
+    boolean button_click = false,goal_check = false;
 
     int count = 0;
 
@@ -40,6 +42,7 @@ public class DiceActivity extends AppCompatActivity {
 
 
         this.selected_pip = Arrays.asList(s);
+        //this.selected_pip = new ArrayList<String>(Arrays.asList("札幌","札幌","青森","盛岡","仙台","千葉"));
 
         ArrayAdapter adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1,this.selected_pip);
 
@@ -58,38 +61,66 @@ public class DiceActivity extends AppCompatActivity {
         d.DiceRoller();
         tv.setText(String.valueOf(d.getDiceCount()));
         view.setEnabled(false);
-
-        if(this.destination.equals(s[d.getDiceCount()+1])){
+        System.out.println(s[d.getDiceCount()-1]);
+        d.initDiceCount();
+        if(this.destination.equals(this.selected_pip.get(d.getDiceCount()))){
             System.out.println("ゴール");
+            goal_check = true;
         }else{
             System.out.println("次もがんばってね");
         }
+        button_click = true;
     }
 
     public void next_page(View v){
-        Destination d = new Destination();
-        d.setDestination();
-        s = d.selectDestination();
+        if(button_click == true){
+            if(goal_check == true){
+                Intent intent = new Intent(this, result.class);
+                intent.putExtra("start", start);
+                intent.putExtra("destination", destination);
+                intent.putExtra("flag","goal");
+                if(intent.resolveActivity(getPackageManager()) != null){
+                    startActivity(intent);
+                }
+
+            }else{
+                if(count > 10){
+                    Intent intent = new Intent(this, result.class);
+                    intent.putExtra("start", start);
+                    intent.putExtra("destination", destination);
+                    intent.putExtra("flag","count");
+                    if(intent.resolveActivity(getPackageManager()) != null){
+                        startActivity(intent);
+                    }
+                }
+                Destination d = new Destination();
+                d.setDestination();
+                s = d.selectDestination();
+
+                TextView tv = (TextView) findViewById(R.id.dice_pip);
+                tv.setText("---");
 
 
-        this.selected_pip = Arrays.asList(s);
+                this.selected_pip = Arrays.asList(s);
+                //this.selected_pip = new ArrayList<String>(Arrays.asList("札幌","札幌","青森","盛岡","仙台","千葉"));
 
-        ArrayAdapter adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1,this.selected_pip);
+                ArrayAdapter adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1,this.selected_pip);
 
-        ListView listView = (ListView) findViewById(R.id.dice_selected);
-        listView.setAdapter(adapter);
+                ListView listView = (ListView) findViewById(R.id.dice_selected);
+                listView.setAdapter(adapter);
 
-        for(int i = 0;i <6;i++) {
-            System.out.println(s[i]);
+                for(int i = 0;i <6;i++) {
+                    System.out.println(s[i]);
+                }
+
+                Button bt = (Button) findViewById(R.id.roll_bt);
+                bt.setEnabled(true);
+
+                this.count++;
+                button_click = false;
+            }
+        }else{
+            System.out.println("サイコロを振ってください");
         }
-
-        Button bt = (Button) findViewById(R.id.roll_bt);
-        bt.setEnabled(true);
-
-        this.count++;
-        if(count > 3){
-            System.out.println("長すぎ");
-        }
-
     }
 }
