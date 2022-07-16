@@ -14,6 +14,8 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
+    public Spinner spinner_start,spinner_destination;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,22 +31,24 @@ public class MainActivity extends AppCompatActivity {
         ArrayAdapter<String> adapter_start = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item,sp_array);
         adapter_start.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
-        Spinner start_point = findViewById(R.id.start_point);
-        start_point.setAdapter(adapter_start);
+        this.spinner_start = findViewById(R.id.start_point);
+        this.spinner_start.setAdapter(adapter_start);
 
         ArrayAdapter<String> adapter_destination = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item,sp_array);
         adapter_destination.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
 
-        Spinner destination = findViewById(R.id.destination);
-        destination.setAdapter(adapter_destination);
+        this.spinner_destination = findViewById(R.id.destination);
+        this.spinner_destination.setAdapter(adapter_destination);
 
 
     }
 
-    public void onClick(View v){
+    public void implemented(View v){
         Intent intent = new Intent(this, DiceActivity.class);
 
+        intent.putExtra("start",(String) spinner_start.getSelectedItem());
+        intent.putExtra("destination",(String) spinner_destination.getSelectedItem());
         if(intent.resolveActivity(getPackageManager()) != null){
             startActivity(intent);
         }
