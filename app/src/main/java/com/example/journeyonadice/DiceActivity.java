@@ -78,16 +78,18 @@ public class DiceActivity extends AppCompatActivity {
                 Intent intent = new Intent(this, result.class);
                 intent.putExtra("start", start);
                 intent.putExtra("destination", destination);
+                intent.putExtra("count", count);
                 intent.putExtra("flag","goal");
                 if(intent.resolveActivity(getPackageManager()) != null){
                     startActivity(intent);
                 }
 
             }else{
-                if(count > 10){
+                if(count > 9){
                     Intent intent = new Intent(this, result.class);
                     intent.putExtra("start", start);
                     intent.putExtra("destination", destination);
+                    intent.putExtra("count", count);
                     intent.putExtra("flag","count");
                     if(intent.resolveActivity(getPackageManager()) != null){
                         startActivity(intent);
@@ -116,7 +118,7 @@ public class DiceActivity extends AppCompatActivity {
                 Button bt = (Button) findViewById(R.id.roll_bt);
                 bt.setEnabled(true);
 
-                this.count++;
+                this.count += 1;
                 button_click = false;
             }
         }else{

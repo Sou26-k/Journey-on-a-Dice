@@ -9,6 +9,7 @@ import android.view.View;
 public class result extends AppCompatActivity {
 
     String destination,start,flag;
+    int count;
     String host = "10.0.2.2";
     int port = 50000;
 
@@ -23,6 +24,7 @@ public class result extends AppCompatActivity {
         destination = intent.getStringExtra("destination");
         start = intent.getStringExtra("start");
         flag = intent.getStringExtra("flag");
+        count = intent.getIntExtra("count",0);
 
         System.out.println(start);
         System.out.println(destination);
@@ -50,7 +52,7 @@ public class result extends AppCompatActivity {
     }
 
     public void again(View view){
-        net.send("出発地:"+ this.start + "\n目的地:"+ this.destination);
+        net.send("出発地:"+ this.start + "\n目的地:"+ this.destination+"\n回数:"+count+"回\n");
         Intent intent = new Intent(this, MainActivity.class);
         if(intent.resolveActivity(getPackageManager()) != null){
             startActivity(intent);
