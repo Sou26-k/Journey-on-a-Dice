@@ -24,10 +24,17 @@ public class MainActivity extends AppCompatActivity {
                 "神戸","奈良","和歌山","鳥取","松江","岡山","広島","山口","徳島","高松",
                 "松山","高知","福岡","佐賀","長崎","熊本","大分","宮崎","鹿児島","那覇"};
 
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item,sp_array);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        ArrayAdapter<String> adapter_start = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item,sp_array);
+        adapter_start.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
         Spinner start_point = findViewById(R.id.start_point);
-        start_point.setAdapter(adapter);
+        start_point.setAdapter(adapter_start);
+
+        ArrayAdapter<String> adapter_destination = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item,sp_array);
+        adapter_destination.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+
+        Spinner destination = findViewById(R.id.destination);
+        destination.setAdapter(adapter_destination);
     }
 }
