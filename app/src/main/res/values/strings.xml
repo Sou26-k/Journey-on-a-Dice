@@ -3,4 +3,5 @@
     <string name="start_point">出発地</string>
     <string name="destination">目的地</string>
     <string name="start">開始</string>
+    <string name="roll_dice">振る</string>
 </resources>
