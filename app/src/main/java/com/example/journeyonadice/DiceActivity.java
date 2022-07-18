@@ -33,6 +33,9 @@ public class DiceActivity extends AppCompatActivity {
         start = intent.getStringExtra("start");
         now = intent.getStringExtra("now");
 
+        TextView tv = (TextView) findViewById(R.id.dice_pip);
+        tv.setText("---");
+
         //System.out.println(intent.getStringExtra("start"));
         //System.out.println(intent.getStringExtra("destination"));
 
@@ -58,12 +61,12 @@ public class DiceActivity extends AppCompatActivity {
     public void roll_dice(View view){
         TextView tv = (TextView) findViewById(R.id.dice_pip);
         Dice d = new Dice();
+        d.initDiceCount();
         d.DiceRoller();
-        tv.setText(String.valueOf(d.getDiceCount()));
+        tv.setText((String)String.valueOf(d.getDiceCount()));
         view.setEnabled(false);
         System.out.println(s[d.getDiceCount()-1]);
-        d.initDiceCount();
-        if(this.destination.equals(this.selected_pip.get(d.getDiceCount()))){
+        if(this.destination.equals(this.selected_pip.get(d.getDiceCount()-1))){
             System.out.println("ゴール");
             goal_check = true;
         }else{
