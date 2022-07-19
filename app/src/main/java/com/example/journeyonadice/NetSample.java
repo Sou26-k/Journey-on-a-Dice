@@ -1,14 +1,9 @@
 package com.example.journeyonadice;
 
 import java.io.BufferedReader;
-import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
-
-import android.os.Message;
-import android.util.Log;
-import android.os.Handler;
 
 public class NetSample {
     private Socket s = null;
@@ -32,22 +27,6 @@ public class NetSample {
                 catch(Exception e) {
                     System.out.println(e);
                 }
-            }
-        }).start();
-    }
-
-    public String[] receive(){
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                    try {
-                        String data = br.readLine();
-                        String[] pip = data.split(",");
-                        System.out.println("これ"+pip[1]);
-                    }catch (Exception e){
-                        String[] pip = null;
-                    }
-                    return pip;
             }
         }).start();
     }
