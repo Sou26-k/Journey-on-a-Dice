@@ -24,6 +24,10 @@ public class DiceActivity extends AppCompatActivity {
 
     int count = 0;
 
+    public NetSample net;
+    String host = "10.0.2.2";
+    int port = 50000;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,13 +43,22 @@ public class DiceActivity extends AppCompatActivity {
         //System.out.println(intent.getStringExtra("start"));
         //System.out.println(intent.getStringExtra("destination"));
 
+        //ここをサーバで処理
         Destination d = new Destination();
         d.setDestination();
         s = d.selectDestination();
 
 
         this.selected_pip = Arrays.asList(s);
-        //this.selected_pip = new ArrayList<String>(Arrays.asList("札幌","札幌","青森","盛岡","仙台","千葉"));
+        this.selected_pip = new ArrayList<String>(Arrays.asList("札幌","札幌","青森","盛岡","仙台","千葉"));
+        net = new NetSample();
+        net.connect(host,port);
+        net.send("select");
+        String[] test = net.receive();
+
+
+
+
 
         ArrayAdapter adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1,this.selected_pip);
 
@@ -56,6 +69,17 @@ public class DiceActivity extends AppCompatActivity {
             System.out.println(s[i]);
         }
 
+    }
+
+    protected void onResume() {
+        super.onResume();
+        net.connect(host, port);
+
+    }
+    protected void onPause() {
+        super.onPause();
+
+        net.close();
     }
 
     public void roll_dice(View view){
